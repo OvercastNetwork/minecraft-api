@@ -3,6 +3,7 @@ package tc.oc.minecraft.api.entity;
 import java.util.Locale;
 import java.util.UUID;
 
+import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import tc.oc.minecraft.api.command.CommandSender;
 
@@ -26,10 +27,10 @@ public interface Player extends CommandSender {
     /**
      * Send a message to the specified screen position of this player.
      *
-     * @param position the screen position
+     * @param position the screen position:
      * @param message the message to send
      */
-    void sendMessage(int position, BaseComponent... message);
+    void sendMessage(ChatMessageType position, BaseComponent... message);
 
     /**
      * Send a message to the specified screen position of this player.
@@ -37,7 +38,7 @@ public interface Player extends CommandSender {
      * @param position the screen position
      * @param message the message to send
      */
-    void sendMessage(int position, BaseComponent message);
+    void sendMessage(ChatMessageType position, BaseComponent message);
 
     /**
      * Get this connection's UUID, if set.
