@@ -3,7 +3,7 @@ package tc.oc.minecraft.api.plugin;
 import java.io.File;
 import java.io.InputStream;
 
-import tc.oc.minecraft.api.Server;
+import tc.oc.minecraft.api.server.Server;
 import tc.oc.minecraft.api.logging.Loggable;
 
 public interface Plugin extends Loggable {
