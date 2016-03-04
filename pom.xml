@@ -6,7 +6,7 @@
 
     <groupId>tc.oc</groupId>
     <artifactId>minecraft-api</artifactId>
-    <version>1.8-SNAPSHOT</version>
+    <version>1.9-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>tc.oc</groupId>
             <artifactId>bungeecord-chat</artifactId>
-            <version>1.8-SNAPSHOT</version>
+            <version>1.9-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
