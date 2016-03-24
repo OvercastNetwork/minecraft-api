@@ -51,4 +51,9 @@ public interface Player extends CommandSender {
      * Get the player's current locale
      */
     Locale getCurrentLocale();
+
+    /**
+     * Get the Minecraft protocol version in use by this player's connection
+     */
+    int getProtocolVersion();
 }
