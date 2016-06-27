@@ -4,6 +4,12 @@ import java.util.List;
 
 public abstract class AbstractConfigurationSection implements ConfigurationSection {
 
+    @Override
+    public String resolvePath(String key) {
+        final String base = getCurrentPath();
+        return base.length() == 0 ? key : base + "." + key;
+    }
+
     protected int indexOfNonInstance(List<?> list, Class<?> type) {
         for(int i = 0; i < list.size(); i++) {
             if(!type.isInstance(list.get(i))) return i;
@@ -18,7 +24,7 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
     }
 
     @Override
-    public <T> List<T> getList(String path, Class<T> type) {
+    public <T> List<T> getListOf(String path, Class<T> type) {
         final List<?> list = getList(path);
         if(list == null) return null;
 
@@ -32,13 +38,10 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
     public <T> T needType(String path, Class<T> type) throws InvalidConfigurationException {
         final Object value = get(path);
         if(value == null) {
-            throw new InvalidConfigurationException("Missing required " + (Object.class.equals(type) ? "value" : type.getSimpleName()) +
-                                                    " at path " + getCurrentPath() + "." + path);
+            throw new InvalidConfigurationException(this, path, "Missing required " + (Object.class.equals(type) ? "value" : type.getSimpleName()));
         }
         if(!type.isInstance(value)) {
-            throw new InvalidConfigurationException("Expected a " + type.getSimpleName() +
-                                                    " rather than a " + value.getClass().getSimpleName() +
-                                                    " at path " + getCurrentPath() + "." + path);
+            throw new InvalidConfigurationException(this, path, "Expected a " + type.getSimpleName() + " rather than a " + value.getClass().getSimpleName());
         }
         return type.cast(value);
     }
@@ -88,10 +91,7 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
         final List<?> list = needList(path);
         final int i = indexOfNonInstance(list, type);
         if(i >= 0) {
-            throw new InvalidConfigurationException("Expected a " + type.getSimpleName() +
-                                                    " rather than a " + list.get(i).getClass().getSimpleName() +
-                                                    " for list item " + i +
-                                                    " at path " + getCurrentPath() + "." + path);
+            throw new InvalidConfigurationException(this, path, i, "Expected a " + type.getSimpleName() + " rather than a " + list.get(i).getClass().getSimpleName());
         }
         return (List<T>) list;
     }

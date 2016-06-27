@@ -19,4 +19,18 @@ public class InvalidConfigurationException extends Exception {
     public InvalidConfigurationException(Throwable cause) {
         super(cause);
     }
+
+    public InvalidConfigurationException(ConfigurationSection section, String message) {
+        this(section, null, message);
+    }
+
+    public InvalidConfigurationException(ConfigurationSection section, String key, String message) {
+        this(section, key, -1, message);
+    }
+
+    public InvalidConfigurationException(ConfigurationSection section, String key, int index, String message) {
+        this("Configuration error at " + (key == null ? section.getCurrentPath() : section.resolvePath(key)) +
+             (index < 0 ? "" : " element " + index) +
+             ": " + message);
+    }
 }

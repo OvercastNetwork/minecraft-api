@@ -7,6 +7,8 @@ public interface ConfigurationSection {
 
     String getCurrentPath();
 
+    String resolvePath(String key);
+
     ConfigurationSection getSection(String path);
 
     Collection<String> getKeys();
@@ -39,7 +41,7 @@ public interface ConfigurationSection {
 
     String getString(String path, String def);
 
-    <T> List<T> getList(String path, Class<T> type);
+    <T> List<T> getListOf(String path, Class<T> type);
 
     List<?> getList(String path);
 
