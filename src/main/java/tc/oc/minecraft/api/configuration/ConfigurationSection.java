@@ -5,9 +5,13 @@ import java.util.List;
 
 public interface ConfigurationSection {
 
+    String getCurrentPath();
+
     ConfigurationSection getSection(String path);
 
     Collection<String> getKeys();
+
+    <T> T getType(String path, Class<T> type);
 
     <T> T get(String path, T def);
 
@@ -35,6 +39,8 @@ public interface ConfigurationSection {
 
     String getString(String path, String def);
 
+    <T> List<T> getList(String path, Class<T> type);
+
     List<?> getList(String path);
 
     List<?> getList(String path, List<?> def);
@@ -52,4 +58,24 @@ public interface ConfigurationSection {
     List<Double> getDoubleList(String path);
 
     List<Boolean> getBooleanList(String path);
+
+    <T> T needType(String path, Class<T> type) throws InvalidConfigurationException;
+
+    Object need(String path) throws InvalidConfigurationException;
+
+    ConfigurationSection needSection(String path) throws InvalidConfigurationException;
+
+    int needInt(String path) throws InvalidConfigurationException;
+
+    long needLong(String path) throws InvalidConfigurationException;
+
+    double needDouble(String path) throws InvalidConfigurationException;
+
+    boolean needBoolean(String path) throws InvalidConfigurationException;
+
+    String needString(String path) throws InvalidConfigurationException;
+
+    List<?> needList(String path) throws InvalidConfigurationException;
+
+    <T> List<T> needList(String path, Class<T> type) throws InvalidConfigurationException;
 }
