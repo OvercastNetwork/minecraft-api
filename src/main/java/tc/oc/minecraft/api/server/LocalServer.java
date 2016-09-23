@@ -4,14 +4,14 @@ import java.util.Set;
 
 import tc.oc.minecraft.api.command.ConsoleCommandSender;
 import tc.oc.minecraft.api.logging.Loggable;
-import tc.oc.minecraft.api.plugin.PluginManager;
+import tc.oc.minecraft.api.plugin.PluginFinder;
 
 /**
  * The local server i.e. the one hosting plugins
  */
 public interface LocalServer extends Loggable, Server {
 
-    PluginManager getPluginManager();
+    PluginFinder getPluginFinder();
 
     ConsoleCommandSender getConsoleSender();
 

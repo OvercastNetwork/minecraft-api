@@ -2,9 +2,7 @@ package tc.oc.minecraft.api.plugin;
 
 import java.util.Collection;
 
-import tc.oc.minecraft.api.event.EventBus;
-
-public interface PluginManager extends EventBus {
+public interface PluginFinder {
 
     Plugin getPlugin(String name);
 
