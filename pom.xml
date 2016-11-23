@@ -32,6 +32,12 @@
 
     <dependencies>
         <dependency>
+            <!-- Should match the version in SportBukkit and Bungee -->
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>findbugs</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>tc.oc</groupId>
             <artifactId>bungeecord-chat</artifactId>
             <version>1.11-SNAPSHOT</version>
