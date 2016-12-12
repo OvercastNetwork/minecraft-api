@@ -1,6 +1,9 @@
 package tc.oc.minecraft.api.configuration;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 public abstract class AbstractConfigurationSection implements ConfigurationSection {
 
@@ -21,6 +24,34 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
     public <T> T getType(String path, Class<T> type) {
         final Object value = get(path);
         return type.isInstance(value) ? type.cast(value) : null;
+    }
+
+    @Override
+    public @Nullable <T> T getParsed(String path, Function<? super String, ? extends T> parser) throws InvalidConfigurationException {
+        final Object value = get(path);
+        if(value == null) return null;
+        final String text = value.toString();
+        try {
+            return parser.apply(text);
+        } catch(RuntimeException e) {
+            throw new InvalidConfigurationException(this, path, "Failed to parse '" + text + "': " + e.toString());
+        }
+    }
+
+    @Override
+    public <T> T getParsed(String path, T def, Function<? super String, ? extends T> parser) throws InvalidConfigurationException {
+        final T value = getParsed(path, parser);
+        return value != null ? value : def;
+    }
+
+    @Override
+    public @Nullable Duration getDuration(String path) throws InvalidConfigurationException {
+        return getParsed(path, Duration::parse);
+    }
+
+    @Override
+    public Duration getDuration(String path, Duration def) throws InvalidConfigurationException {
+        return getParsed(path, def, Duration::parse);
     }
 
     @Override
@@ -79,6 +110,20 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
     @Override
     public String needString(String path) throws InvalidConfigurationException {
         return needType(path, String.class);
+    }
+
+    @Override
+    public <T> T needParsed(String path, Function<? super String, ? extends T> parser) throws InvalidConfigurationException {
+        final T value = getParsed(path, parser);
+        if(value == null) {
+            throw new InvalidConfigurationException(this, path, "Missing required value");
+        }
+        return value;
+    }
+
+    @Override
+    public Duration needDuration(String path) throws InvalidConfigurationException {
+        return needParsed(path, Duration::parse);
     }
 
     @Override
