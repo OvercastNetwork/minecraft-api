@@ -3,6 +3,7 @@ package tc.oc.minecraft.api.configuration;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -49,6 +50,10 @@ public interface ConfigurationSection {
     <T> T getParsed(String path, T def, Function<? super String, ? extends T> parser) throws InvalidConfigurationException;
 
     @Nullable Duration getDuration(String path) throws InvalidConfigurationException;
+
+    default Optional<Duration> duration(String path) throws InvalidConfigurationException {
+        return Optional.ofNullable(getDuration(path));
+    }
 
     Duration getDuration(String path, Duration def) throws InvalidConfigurationException;
 

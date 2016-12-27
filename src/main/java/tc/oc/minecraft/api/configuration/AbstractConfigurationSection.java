@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
+import tc.oc.time.Durations;
+
 public abstract class AbstractConfigurationSection implements ConfigurationSection {
 
     @Override
@@ -46,7 +48,7 @@ public abstract class AbstractConfigurationSection implements ConfigurationSecti
 
     @Override
     public @Nullable Duration getDuration(String path) throws InvalidConfigurationException {
-        return getParsed(path, Duration::parse);
+        return getParsed(path, Durations::parse);
     }
 
     @Override

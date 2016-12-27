@@ -38,6 +38,16 @@
             <version>3.0.0</version>
         </dependency>
         <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
             <groupId>tc.oc</groupId>
             <artifactId>bungeecord-chat</artifactId>
             <version>1.11-SNAPSHOT</version>
