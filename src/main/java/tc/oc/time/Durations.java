@@ -11,14 +11,14 @@ public final class Durations {
      * except that the "PT" prefix is optional.
      */
     public static Duration parse(CharSequence text) throws DateTimeParseException {
-        switch(text.charAt(0)) {
-            case 'p':
-            case 'P':
-            case '-':
-                return Duration.parse(text);
-
-            default:
-                return Duration.parse("PT" + text);
+        if(text.length() > 0) {
+            switch(text.charAt(0)) {
+                case 'p':
+                case 'P':
+                case '-':
+                    return Duration.parse(text);
+            }
         }
+        return Duration.parse("PT" + text);
     }
 }
