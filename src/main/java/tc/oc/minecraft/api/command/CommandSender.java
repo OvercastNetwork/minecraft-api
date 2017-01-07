@@ -12,6 +12,10 @@ public interface CommandSender extends Permissible {
      */
     String getName();
 
+    default String getName(CommandSender viewer) {
+        return getName();
+    }
+
     /**
      * Send a message to this sender.
      *
@@ -20,6 +24,10 @@ public interface CommandSender extends Permissible {
      */
     @Deprecated
     void sendMessage(String message);
+
+    default void sendMessage(String[] message) {
+        for(String line : message) sendMessage(line);
+    }
 
     /**
      * Send a message to this sender.
