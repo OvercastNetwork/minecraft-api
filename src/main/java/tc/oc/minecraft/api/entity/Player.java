@@ -6,8 +6,12 @@ import java.util.UUID;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import tc.oc.minecraft.api.command.CommandSender;
+import tc.oc.reference.Handle;
 
 public interface Player extends CommandSender {
+
+    @Override
+    Handle<? extends Player> handle();
 
     /**
      * Gets this player's display name.
@@ -56,4 +60,6 @@ public interface Player extends CommandSender {
      * Get the Minecraft protocol version in use by this player's connection
      */
     int getProtocolVersion();
+
+
 }
