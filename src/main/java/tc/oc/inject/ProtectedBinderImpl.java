@@ -9,8 +9,12 @@ import com.google.inject.PrivateBinder;
 class ProtectedBinderImpl implements ProtectedBinder {
 
     private static Class[] SKIP = new Class[]{
-        ProtectedModule.class,
+        ForwardingBinder.class,
+        ForwardingPrivateBinder.class,
+        ForwardingProtectedBinder.class,
+        ProtectedBinder.class,
         ProtectedBinderImpl.class,
+        ProtectedModule.class
     };
 
     private final Binder global;
