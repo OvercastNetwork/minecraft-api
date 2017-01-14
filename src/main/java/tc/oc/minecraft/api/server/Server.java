@@ -4,11 +4,16 @@ import java.util.Collection;
 import java.util.UUID;
 
 import tc.oc.minecraft.api.entity.Player;
+import tc.oc.reference.Handle;
+import tc.oc.reference.Handleable;
 
 /**
  * A Minecraft server or proxy, local or remote
  */
-public interface Server {
+public interface Server extends Handleable {
+
+    @Override
+    Handle<? extends Server> handle();
 
     /**
      * Return all players currently connected.

@@ -9,8 +9,14 @@ import tc.oc.minecraft.api.event.EventRegistry;
 import tc.oc.exception.ExceptionHandler;
 import tc.oc.minecraft.api.server.Server;
 import tc.oc.minecraft.api.logging.Loggable;
+import tc.oc.reference.Handle;
+import tc.oc.reference.Handleable;
 
-public interface Plugin extends Loggable {
+public interface Plugin extends Loggable, Handleable {
+
+    @Override
+    Handle<? extends Plugin> handle();
+
     /**
      * Return metadata about this plugin
      */

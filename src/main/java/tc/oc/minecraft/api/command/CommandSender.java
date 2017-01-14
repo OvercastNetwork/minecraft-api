@@ -2,8 +2,13 @@ package tc.oc.minecraft.api.command;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import tc.oc.minecraft.api.permissions.Permissible;
+import tc.oc.reference.Handle;
+import tc.oc.reference.Handleable;
 
-public interface CommandSender extends Permissible {
+public interface CommandSender extends Permissible, Handleable {
+
+    @Override
+    Handle<? extends CommandSender> handle();
 
     /**
      * Get the unique name of this command sender.
