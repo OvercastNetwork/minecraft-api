@@ -1,5 +1,6 @@
 package tc.oc.minecraft.api.server;
 
+import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -9,6 +10,12 @@ import tc.oc.minecraft.api.entity.Player;
  * A Minecraft server or proxy, local or remote
  */
 public interface Server {
+
+    InetSocketAddress getAddress();
+
+    default int getPort() {
+        return getAddress().getPort();
+    }
 
     /**
      * Return all players currently connected.

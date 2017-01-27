@@ -77,6 +77,8 @@ public interface Plugin extends Loggable {
         return true;
     }
 
+    boolean isEnabled();
+
     /**
      * Called when this plugin is loaded.
      * All plugins are loaded before any of them are disabled.

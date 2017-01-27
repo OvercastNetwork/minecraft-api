@@ -1,13 +1,14 @@
 package tc.oc.minecraft.api.entity;
 
+import java.net.InetSocketAddress;
 import java.util.Locale;
-import java.util.UUID;
+import java.util.Optional;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import tc.oc.minecraft.api.command.CommandSender;
 
-public interface Player extends CommandSender {
+public interface Player extends OfflinePlayer, CommandSender {
 
     /**
      * Gets this player's display name.
@@ -41,13 +42,6 @@ public interface Player extends CommandSender {
     void sendMessage(ChatMessageType position, BaseComponent message);
 
     /**
-     * Get this connection's UUID, if set.
-     *
-     * @return the UUID
-     */
-    UUID getUniqueId();
-
-    /**
      * Get the player's current locale
      */
     Locale getCurrentLocale();
@@ -56,4 +50,11 @@ public interface Player extends CommandSender {
      * Get the Minecraft protocol version in use by this player's connection
      */
     int getProtocolVersion();
+
+    InetSocketAddress getAddress();
+
+    @Override
+    default Optional<String> getLastKnownName() {
+        return Optional.of(getName());
+    }
 }
