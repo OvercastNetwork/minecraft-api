@@ -33,4 +33,6 @@ public interface PluginDescription {
      * Return a list of other plugins that the plugin requires for full functionality
      */
     List<String> getSoftDepend();
+
+    boolean isIsolated();
 }
