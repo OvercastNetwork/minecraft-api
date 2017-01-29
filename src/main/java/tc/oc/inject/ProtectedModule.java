@@ -21,7 +21,33 @@ public abstract class ProtectedModule implements Module, ForwardingProtectedBind
 
     protected void configure() {}
 
+    private final @Nullable Object moduleKey;
     private @Nullable ProtectedBinder binder;
+
+    protected ProtectedModule(@Nullable Object moduleKey) {
+        this.moduleKey = moduleKey;
+    }
+
+    protected ProtectedModule() {
+        this(null);
+    }
+
+    @Override
+    public int hashCode() {
+        return moduleKey != null ? moduleKey.hashCode()
+                                 : super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(moduleKey != null) {
+            return obj != null &&
+                   getClass().equals(obj.getClass()) &&
+                   moduleKey.equals(((ProtectedModule) obj).moduleKey);
+        } else {
+            return super.equals(obj);
+        }
+    }
 
     @Override
     public final ProtectedBinder forwardedBinder() {
