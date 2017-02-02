@@ -3,6 +3,7 @@ package tc.oc.minecraft.api.server;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.UUID;
+import javax.annotation.Nullable;
 
 import tc.oc.minecraft.api.entity.Player;
 
@@ -30,7 +31,7 @@ public interface Server {
      * @param name of the player
      * @return their player instance, or null if the player was not found
      */
-    Player getPlayerExact(String name);
+    @Nullable Player getPlayerExact(String name);
 
     /**
      * Gets a connected player via their UUID
@@ -38,5 +39,5 @@ public interface Server {
      * @param id UUID of the player
      * @return their player instance, or null if the player was not found
      */
-    Player getPlayer(UUID id);
+    @Nullable Player getPlayer(UUID id);
 }

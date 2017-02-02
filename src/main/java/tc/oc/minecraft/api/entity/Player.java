@@ -7,8 +7,9 @@ import java.util.Optional;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import tc.oc.minecraft.api.command.CommandSender;
+import tc.oc.minecraft.api.user.User;
 
-public interface Player extends OfflinePlayer, CommandSender {
+public interface Player extends User, CommandSender {
 
     /**
      * Gets this player's display name.
@@ -54,7 +55,7 @@ public interface Player extends OfflinePlayer, CommandSender {
     InetSocketAddress getAddress();
 
     @Override
-    default Optional<String> getLastKnownName() {
+    default Optional<String> name() {
         return Optional.of(getName());
     }
 }
