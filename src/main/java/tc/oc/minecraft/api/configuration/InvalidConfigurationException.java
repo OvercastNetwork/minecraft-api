@@ -3,7 +3,7 @@ package tc.oc.minecraft.api.configuration;
 /**
  * Exception thrown when attempting to load an invalid {@link Configuration}
  */
-public class InvalidConfigurationException extends Exception {
+public class InvalidConfigurationException extends RuntimeException {
 
     public InvalidConfigurationException() {
     }
